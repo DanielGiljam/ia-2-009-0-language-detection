@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -14,15 +13,7 @@ public class Main {
 
     private static final String PATH_TO_SAMPLE_DATA = "resources/sample-data";
 
-    private static final Pattern SINGLE_LETTER_PATTERN = Pattern.compile("\\p{L}");
-
-    private static final Pattern NON_LETTER_PATTERN = Pattern.compile("[^\\p{L}]");
-
-    private static final Pattern TRIPLET_PATTERN = Pattern.compile("[\\p{L}]{3}");
-
-    private static final Pattern FIRST_LETTER_IN_WORD_PATTERN = Pattern.compile("(?:^|[^\\p{L}])(\\p{L})");
-
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
         final List<TextFile> sampleDataFiles = getSampleData();
     }
 
@@ -31,7 +22,7 @@ public class Main {
         if (Files.isDirectory(sampleDataDirectory)) {
             try (final Stream<Path> sampleDataFilesStream = Files.walk(sampleDataDirectory)) {
                 return sampleDataFilesStream.filter(TextFile::isTextFile)
-                        .map(path -> {
+                        .map((final Path path) -> {
                             try {
                                 return new TextFile(path);
                             } catch (IOException e) {
@@ -48,7 +39,7 @@ public class Main {
 
         private static final String messageTemplate = "The path \"%s\" was not a path to a directory.";
 
-        DirectoryNotFoundException(Path path) {
+        DirectoryNotFoundException(final Path path) {
             super(String.format(messageTemplate, path.toString()));
         }
     }
