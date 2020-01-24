@@ -15,4 +15,9 @@ class TripletDistributionAnalysis extends CharacterDistributionAnalysis {
     protected void analyze() {
         // TODO: implement analyze() in TripletDistributionAnalysis!
     }
+
+    @Override
+    void print() {
+        print("3-tecken kombination", 2);
+    }
 }

@@ -17,6 +17,6 @@ class LeadingLettersInWordsAnalysis extends CharacterDistributionAnalysis {
 
     @Override
     void print() {
-
+        print("1:a tecken", 1);
     }
 }

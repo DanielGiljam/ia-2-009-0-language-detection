@@ -14,4 +14,9 @@ class SingleLetterDistributionAnalysis extends CharacterDistributionAnalysis {
     protected void analyze() {
         // TODO: implement analyze() in SingleLetterDistributionAnalysis!
     }
+
+    @Override
+    void print() {
+        print("Tecken", 1);
+    }
 }
