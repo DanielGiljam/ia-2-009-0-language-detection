@@ -25,8 +25,9 @@ public class Main {
                         .map((final Path path) -> {
                             try {
                                 return new TextFile(path);
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            } catch (IOException error) {
+                                error.printStackTrace();
+                                System.exit(1);
                             }
                             return null;
                         })
@@ -37,10 +38,10 @@ public class Main {
 
     private static class DirectoryNotFoundException extends FileNotFoundException {
 
-        private static final String messageTemplate = "The path \"%s\" was not a path to a directory.";
+        private static final String MESSAGE_TEMPLATE = "The path \"%s\" is not a path to a directory.";
 
         DirectoryNotFoundException(final Path path) {
-            super(String.format(messageTemplate, path.toString()));
+            super(String.format(MESSAGE_TEMPLATE, path.toString()));
         }
     }
 }
