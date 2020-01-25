@@ -13,7 +13,7 @@ abstract class CharacterDistributionAnalysis {
 
     protected final String characters;
     protected final HashMap<String, Integer> data = new HashMap<>();
-    protected int total = 1;
+    protected int total = 0;
 
     CharacterDistributionAnalysis(final String characters) {
         this.characters = removeNonLetters(characters);
