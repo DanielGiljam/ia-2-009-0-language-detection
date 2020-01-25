@@ -1,10 +1,11 @@
 package com.danielgiljam.ia_2_009_0_language_detection;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class SingleLetterDistributionAnalysis extends CharacterDistributionAnalysis {
 
-    private static final Pattern PATTERN = Pattern.compile("[.]");
+    private static final Pattern PATTERN = Pattern.compile("[\\S]");
 
     SingleLetterDistributionAnalysis(final String characters) {
         super(characters);
@@ -12,7 +13,13 @@ class SingleLetterDistributionAnalysis extends CharacterDistributionAnalysis {
 
     @Override
     protected void analyze() {
-        // TODO: implement analyze() in SingleLetterDistributionAnalysis!
+        final Matcher matcher = PATTERN.matcher(characters);
+        String match;
+        while (matcher.find()) {
+            match = matcher.group().toLowerCase();
+            data.put(match, data.containsKey(match) ? data.get(match) + 1 : 1);
+            total++;
+        }
     }
 
     @Override

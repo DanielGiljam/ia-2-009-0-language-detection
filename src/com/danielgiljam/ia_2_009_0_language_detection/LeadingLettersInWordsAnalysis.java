@@ -1,5 +1,6 @@
 package com.danielgiljam.ia_2_009_0_language_detection;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class LeadingLettersInWordsAnalysis extends CharacterDistributionAnalysis {
@@ -12,7 +13,13 @@ class LeadingLettersInWordsAnalysis extends CharacterDistributionAnalysis {
 
     @Override
     protected void analyze() {
-        // TODO: implement analyze() in LeadingLettersInWordsAnalysis!
+        final Matcher matcher = PATTERN.matcher(characters);
+        String match;
+        while (matcher.find()) {
+            match = matcher.group().toLowerCase();
+            data.put(match, data.containsKey(match) ? data.get(match) + 1 : 1);
+            total++;
+        }
     }
 
     @Override
