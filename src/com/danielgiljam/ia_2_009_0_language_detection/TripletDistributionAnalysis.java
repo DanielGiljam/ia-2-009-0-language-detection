@@ -26,6 +26,6 @@ class TripletDistributionAnalysis extends CharacterDistributionAnalysis {
 
     @Override
     void print() {
-        print("3-tecken kombination", 2);
+        print(2);
     }
 }

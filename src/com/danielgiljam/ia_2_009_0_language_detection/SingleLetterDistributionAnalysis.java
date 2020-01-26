@@ -24,6 +24,6 @@ class SingleLetterDistributionAnalysis extends CharacterDistributionAnalysis {
 
     @Override
     void print() {
-        print("Tecken", 1);
+        print(1);
     }
 }

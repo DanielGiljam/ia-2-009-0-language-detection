@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,8 +23,10 @@ public class Main {
                 .collect(Collectors.toList());
         final TextFile inputFile = getInputFile(args);
         final LanguageSignature inputFileSignature = new LanguageSignature(inputFile);
+        System.out.println();
         inputFileSignature.print();
-        final HashMap<String, Integer> scores = inputFileSignature.scoreAgainst(predefinedLanguageSignatures);
+        inputFileSignature.scoreAgainst(predefinedLanguageSignatures);
+        System.out.println(StringResources.INFO_MESSAGE);
     }
 
     private static List<TextFile> getSampleData() throws IOException {
