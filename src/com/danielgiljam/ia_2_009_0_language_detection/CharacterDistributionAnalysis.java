@@ -73,4 +73,9 @@ abstract class CharacterDistributionAnalysis {
     private static String removeNonLetters(final String characters) {
         return NON_LETTER_PATTERN.matcher(characters).replaceAll("");
     }
+
+    static <T extends CharacterDistributionAnalysis> double getDifference(final T analysis1, final T analysis2) {
+        // TODO implement getDifference()!
+        return 0f;
+    }
 }

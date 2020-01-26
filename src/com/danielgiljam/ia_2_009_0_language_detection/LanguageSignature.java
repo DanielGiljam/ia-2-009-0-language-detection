@@ -21,7 +21,7 @@ class LanguageSignature {
 
     private Score scoreAgainst(final LanguageSignature languageSignature) {
         // TODO: implement scoreAgainst()!
-        return new Score(0,0,0,0);
+        return new Score(new ArrayList<>());
     }
 
     void scoreAgainst(final List<LanguageSignature> languageSignatures) {
@@ -56,7 +56,7 @@ class LanguageSignature {
         }
 
         final List<Map.Entry<String, Score>> scoresList = new ArrayList<>(scores.entrySet());
-        scoresList.sort(Comparator.comparingDouble((final Map.Entry<String, Score> entry) -> entry.getValue().score));
+        scoresList.sort(Comparator.comparingDouble((final Map.Entry<String, Score> entry) -> entry.getValue().average));
 
         // 7 = maximum characters needed to print a percentage (e.g. "99.99 %")
         final int lastColumnWidth = Math.max(StringResources.SCORE_TABLE_LAST_COLUMN_HEADER.length(), 7);
@@ -81,10 +81,10 @@ class LanguageSignature {
             stringBuilder.append(String.format(
                     rowTemplate,
                     scoreListItem.getKey(),
-                    formatAsPercentage(score.score1),
-                    formatAsPercentage(score.score2),
-                    formatAsPercentage(score.score3),
-                    formatAsPercentage(score.score)
+                    formatAsPercentage(score.get(1)),
+                    formatAsPercentage(score.get(2)),
+                    formatAsPercentage(score.get(3)),
+                    formatAsPercentage(score.average)
             ));
         }
 
@@ -135,16 +135,21 @@ class LanguageSignature {
 
     private static class Score {
 
-        private final double score1;
-        private final double score2;
-        private final double score3;
-        private final double score;
+        private final List<Double> scores;
+        private final double average;
 
-        private Score(final double score1, final double score2, final double score3, final double score) {
-            this.score1 = score1;
-            this.score2 = score2;
-            this.score3 = score3;
-            this.score = score;
+        private Score(final List<Double> scores) {
+            this.scores = scores;
+            this.average = calculateAverage();
+        }
+
+        private double calculateAverage() {
+            // TODO: implement calculateAverage()!
+            return 0f;
+        }
+
+        private double get(final int index) {
+            return scores.get(index - 1);
         }
     }
 }
