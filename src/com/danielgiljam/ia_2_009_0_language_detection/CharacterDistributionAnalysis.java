@@ -54,6 +54,16 @@ abstract class CharacterDistributionAnalysis {
         System.out.println(stringBuilder.toString());
     }
 
+    static <T extends CharacterDistributionAnalysis> double getDifference(final T analysis1, final T analysis2) {
+        final HashMap<String, Double> data1 = getNormalizedData(analysis1);
+        final HashMap<String, Double> data2 = getNormalizedData(analysis2);
+        final HashMap<String, Double> difference = maskDataSets(data1, data2);
+        final HashMap<String, Double> absoluteDifference = getAbsoluteData(difference);
+        double accumulator = 0;
+        for (final Double value : absoluteDifference.values()) accumulator += value;
+        return accumulator / absoluteDifference.size();
+    }
+
     private static String getDivider(final String rowTemplate) {
         return String.format(rowTemplate, "", "").replace(" ", "-");
     }
@@ -74,8 +84,28 @@ abstract class CharacterDistributionAnalysis {
         return NON_LETTER_PATTERN.matcher(characters).replaceAll("");
     }
 
-    static <T extends CharacterDistributionAnalysis> double getDifference(final T analysis1, final T analysis2) {
-        // TODO implement getDifference()!
-        return 0f;
+    private static HashMap<String, Double> getNormalizedData(final CharacterDistributionAnalysis characterDistributionAnalysis) {
+        final int total = characterDistributionAnalysis.total;
+        final HashMap<String, Double> normalizedData = new HashMap<>();
+        characterDistributionAnalysis.data.forEach((final String key, final Integer value) ->
+                normalizedData.put(key, (double) value / total)
+        );
+        return normalizedData;
+    }
+
+    private static HashMap<String, Double> getAbsoluteData(final HashMap<String, Double> data) {
+        final HashMap<String, Double> absoluteData = new HashMap<>();
+        data.forEach((final String key, final Double value) ->
+                absoluteData.put(key, Math.abs(value))
+        );
+        return absoluteData;
+    }
+
+    private static HashMap<String, Double> maskDataSets(final HashMap<String, Double> target, final HashMap<String, Double> mask) {
+        final HashMap<String, Double> maskedDataSet = new HashMap<>(target);
+        mask.forEach((final String key, final Double value) ->
+                maskedDataSet.put(key, maskedDataSet.containsKey(key) ? maskedDataSet.get(key) - value : value * -1)
+        );
+        return maskedDataSet;
     }
 }

@@ -20,8 +20,11 @@ class LanguageSignature {
     }
 
     private Score scoreAgainst(final LanguageSignature languageSignature) {
-        // TODO: implement scoreAgainst()!
-        return new Score(new ArrayList<>());
+        final List<Double> scores = new ArrayList<>();
+        for (final String key : new String[]{StringResources.ANALYSIS_1, StringResources.ANALYSIS_2, StringResources.ANALYSIS_3}) {
+            scores.add(CharacterDistributionAnalysis.getDifference(this.analytics.get(key), languageSignature.analytics.get(key)));
+        }
+        return new Score(scores);
     }
 
     void scoreAgainst(final List<LanguageSignature> languageSignatures) {
@@ -46,9 +49,9 @@ class LanguageSignature {
 
         System.out.println(stringBuilder.toString());
 
+        final HashMap<String, Score> scores = new HashMap<>();
         int firstColumnWidth = StringResources.SCORE_TABLE_FIRST_COLUMN_HEADER.length();
         String language;
-        final HashMap<String, Score> scores = new HashMap<>();
         for (final LanguageSignature signature : languageSignatures) {
             language = signature.language;
             scores.put(signature.language, scoreAgainst(signature));
@@ -140,12 +143,9 @@ class LanguageSignature {
 
         private Score(final List<Double> scores) {
             this.scores = scores;
-            this.average = calculateAverage();
-        }
-
-        private double calculateAverage() {
-            // TODO: implement calculateAverage()!
-            return 0f;
+            double accumulator = 0;
+            for (final Double score : scores) accumulator += score;
+            this.average = accumulator / scores.size();
         }
 
         private double get(final int index) {
