@@ -24,10 +24,12 @@ public class Main {
     public static void main(final String[] args) {
         final Args argsParsed = new Args(args);
         if (argsParsed.printInfo) {
+            System.out.println();
             System.out.println(StringResources.INFO_MESSAGE);
             return;
         }
         if (argsParsed.printUsage) {
+            System.out.println();
             System.out.println(StringResources.USAGE_MESSAGE);
             return;
         }
