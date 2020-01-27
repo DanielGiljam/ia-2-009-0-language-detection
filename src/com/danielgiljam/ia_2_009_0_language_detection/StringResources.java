@@ -40,7 +40,9 @@ public class StringResources {
              "\t                              the text files it uses to build its\n" +
              "\t                              predefined language signatures.\n" +
              "\t                              If you don't specify this, the default.\n" +
-             "\t                              is \"resources/sample-data\".\n\n" +
+             "\t                              is \"resources/sample-data\". The \"path\" -argument\n" +
+             "\t                              may not contain any kind of whitespace\n" +
+             "\t                              or attempted character escape.\n\n" +
              "The required \"path\" -argument should point to a text file that you want the tool to \"guess\" the language of.";
 
      static final String USAGE_MESSAGE =
@@ -58,7 +60,9 @@ public class StringResources {
              "\t                              the text files it uses to build its\n" +
              "\t                              predefined language signatures.\n" +
              "\t                              If you don't specify this, the default.\n" +
-             "\t                              is \"resources/sample-data\".\n\n" +
+             "\t                              is \"resources/sample-data\". The \"path\" -argument\n" +
+             "\t                              may not contain any kind of whitespace\n" +
+             "\t                              or attempted character escape.\n\n" +
              "This tool analyzes the distribution characters and substrings in text files\n" +
              "to create \"language signatures\" based on which it can \"guess\" what language\n" +
              "an arbitrary text file in written in. The required \"path\" -argument should point\n" +
