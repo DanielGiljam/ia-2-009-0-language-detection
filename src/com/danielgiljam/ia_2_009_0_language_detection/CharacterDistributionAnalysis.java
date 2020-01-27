@@ -77,7 +77,7 @@ abstract class CharacterDistributionAnalysis {
     }
 
     private static String getRowTemplate(final int firstColumnWidth, final int secondColumnWidth) {
-        return String.format("%%-%ds   %%-5%ds%%n", firstColumnWidth, secondColumnWidth);
+        return String.format("%%-%ds   %%-%ds%%n", firstColumnWidth, secondColumnWidth);
     }
 
     private static String removeNonLetters(final String characters) {
