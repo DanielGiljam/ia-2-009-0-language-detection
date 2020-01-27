@@ -22,6 +22,8 @@ public class StringResources {
      static final String SCORE_TABLE_LAST_COLUMN_HEADER = "Kombinerat";
      static final String SCORE_TABLE_COLUMN_HEADER_TEMPLATE = "Analys %d";
 
+     static final String SCORE_TABLE_SUMMARY_TEMPLATE = "%nSpråksignaturen påminner mest om %s.%n";
+
      static final String INFO_MESSAGE =
              "v1.0.0\n\n" +
              "© Daniel Giljam 2020\n" +

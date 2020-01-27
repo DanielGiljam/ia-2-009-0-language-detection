@@ -92,6 +92,7 @@ class LanguageSignature {
         }
 
         stringBuilder.append(getDivider(rowTemplate));
+        stringBuilder.append(String.format(StringResources.SCORE_TABLE_SUMMARY_TEMPLATE, scoresList.get(0).getKey()));
 
         System.out.println(stringBuilder.toString());
     }
